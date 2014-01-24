@@ -175,6 +175,35 @@ Collection of all groups.
             "total": 2
         }
         
+## Groups in a radius [/groups{?within,of}]
+Collection of groups within a given radius (in miles)
+
++ Parameters
+    + within (required, number, `25`) ... The radius in which the returned groups meet. Has example.
+    + of (required, string) ... The point around which to search.
+
+### List all groups within a radius [GET]
++ Response 200 (application/json)
+
+        {
+            "groups": [{
+                "id": 1,
+                "name": "Doe Group",
+                "leader": 1,
+                "members": [1,2,3],
+                "open": 1,
+                "meeting_coordinates": "41.850033,-87.6500523", 
+            }, {
+                "id": 2,
+                "name": "Other Group",
+                "leader": 4,
+                "members": [1,4],
+                "open": 0,
+                "meeting_coordinates": "35.040784,-80.812622",
+            }],
+            "total": 2
+        }
+        
 ## Open Groups Collection [/groups/open]
 Collection of all open groups.
 
