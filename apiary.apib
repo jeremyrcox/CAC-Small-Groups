@@ -1,0 +1,237 @@
+FORMAT: 1A
+
+# CAC Small Groups
+CAC Small Groups is a software tool for tracking and facilitating a church small group ministry.
+
+# Group People
+People related resources of the **CAC Small Groups API**
+
+## People Collection [/people]
+Collection of all people.
+
+### List all People [GET]
++ Response 200 (application/json)
+
+        {
+            "people": [{
+                "id": 1,
+                "fname": "John",
+                "lname": "Doe",
+                "address": "123 Main Street",
+                "city": "Charlotte",
+                "state": "NC",
+                "zip": "28277",
+                "coordinates": "35.041241,-80.813767",
+                "groups": [1,2],
+                "family":{
+                    "spouse": 2,
+                    "child": 3,
+                    "parent": 4
+                },
+                "gender": "m",
+                "phone": "7045551234",
+                "member": 1
+            }, {
+                "id": 2,
+                "fname": "Jane",
+                "lname": "Doe",
+                "address": "123 Main Street",
+                "city": "Charlotte",
+                "state": "NC",
+                "zip": "28277",
+                "coordinates": "35.041241,-80.813767",
+                "groups": [1],
+                "family":{
+                    "spouse": 1,
+                    "child": 3,
+                },
+                "gender": "f",
+                "phone": "7045555678",
+                "member": 1
+            },{
+                "id": 3,
+                "fname": "Johnny",
+                "lname": "Doe",
+                "address": "123 Main Street",
+                "city": "Charlotte",
+                "state": "NC",
+                "zip": "28277",
+                "coordinates": "35.041241,-80.813767",
+                "groups": [1],
+                "family":{
+                    "parent": 1,
+                    "parent": 2
+                },
+                "gender": "m",
+                "phone": "7045551234",
+                "member": 1
+            },{
+                "id": 4,
+                "fname": "Mike",
+                "lname": "Wazowski",
+                "address": "456 Scary Street",
+                "city": "Charlotte",
+                "state": "NC",
+                "zip": "28277",
+                "coordinates": "35.040784,-80.812622",
+                "groups": [2],
+                "family":{},
+                "gender": "m",
+                "phone": "7045551234",
+                "member": 1
+            }],
+            "total": 4
+        }
+
+### Create a Person [POST]
++ Request (application/json)
+
+        {
+            "fname": "Bob",
+            "lname": "White",
+            "address": "789 Another Street",
+            "city": "Charlotte",
+            "state": "NC",
+            "zip": "28277",
+            "coordinates": "35.039784,-80.812622",
+            "gender": "m",
+            "phone": "7045551234",
+        }
+
++ Response 201 (application/json)
+
+        {
+            "id": 5,
+            "fname": "Bob",
+            "lname": "White",
+            "address": "789 Another Street",
+            "city": "Charlotte",
+            "state": "NC",
+            "zip": "28277",
+            "coordinates": "35.039784,-80.812622",
+            "groups": [],
+            "family":{},
+            "gender": "m",
+            "phone": "7045551234",
+            "member": 1
+        }
+
+## People [/people/{id}]
+A single Person object with all details
+
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the Person to fetch. Has example value.
+
+### Retrieve a Note [GET]
++ Response 200 (application/json)
+
+        {
+            "id": 1,
+            "fname": "John",
+            "lname": "Doe",
+            "address": "123 Main Street",
+            "city": "Charlotte",
+            "state": "NC",
+            "zip": "28277",
+            "coordinates": "41.850033,-87.6500523",
+            "groups": [1,2],
+            "family":{
+               "spouse": 2,
+               "child": 3,
+               "parent": 4
+            },
+            "gender": "m",
+            "phone": "7045551234",
+            "member": 1
+        }
+
+### Remove a Person [DELETE]
++ Response 204
+
+# Group Groups
+
+## Groups Collection [/groups]
+Collection of all groups.
+
+### List all groups [GET]
++ Response 200 (application/json)
+
+        {
+            "groups": [{
+                "id": 1,
+                "name": "Doe Group",
+                "leader": 1,
+                "members": [1,2,3],
+                "open": 1,
+                "meeting_coordinates": "41.850033,-87.6500523", 
+            }, {
+                "id": 2,
+                "name": "Other Group",
+                "leader": 4,
+                "members": [1,4],
+                "open": 0,
+                "meeting_coordinates": "35.040784,-80.812622",
+            }],
+            "total": 2
+        }
+        
+## Open Groups Collection [/groups/open]
+Collection of all open groups.
+
+### List all open groups [GET]
++ Response 200 (application/json)
+
+        {
+            "groups": [{
+                "id": 1,
+                "name": "Doe Group",
+                "leader": 1,
+                "members": [1,2,3],
+                "open": 1,
+                "meeting_coordinates": "41.850033,-87.6500523", 
+            }],
+            "total": 1
+        }
+
+### Create a Group [POST]
++ Request (application/json)
+
+        {
+            "name": "New Group",
+            "leader": 2,
+            "members": [2],
+            "open": 1,
+            "meeting_coordinates": "41.850033,-87.6500523",
+        }
+
++ Response 201 (application/json)
+
+        {
+            "id": 3,
+            "name": "New Group",
+            "leader": 2,
+            "members": [2],
+            "open": 1
+            "meeting_coordinates": "41.850033,-87.6500523",
+        }
+
+## Groups [/groups/{id}]
+A single group object with all details
+
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the Group to fetch. Has example value.
+
+### Retrieve a Group [GET]
++ Response 200 (application/json)
+
+        {
+            "id": 1,
+            "name": "Doe Group",
+            "leader": 1,
+            "members": [1,2,3],
+            "open": 1,
+            "meeting_coordinates": "41.850033,-87.6500523",
+        }
+
+### Remove a Group [DELETE]
++ Response 204
