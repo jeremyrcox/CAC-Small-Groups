@@ -235,3 +235,49 @@ A single group object with all details
 
 ### Remove a Group [DELETE]
 + Response 204
+
+## People in a Group [/groups/{id}/people]
+Retrieve the people in a given group
+
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the Group from which to fetch people. Has example value.
+    
+### Retrieve people in a group [GET]
++ Response 200 (application/json)
+
+        {
+            "people": [{
+                "id": 1,
+                "fname": "John",
+                "lname": "Doe",
+                "address": "123 Main Street",
+                "city": "Charlotte",
+                "state": "NC",
+                "zip": "28277",
+                "coordinates": "35.041241,-80.813767",
+                "groups": [1,2],
+                "family":{
+                    "spouse": 2,
+                    "child": 3,
+                    "parent": 4
+                },
+                "gender": "m",
+                "phone": "7045551234",
+                "member": 1
+            }, {
+                "id": 4,
+                "fname": "Mike",
+                "lname": "Wazowski",
+                "address": "456 Scary Street",
+                "city": "Charlotte",
+                "state": "NC",
+                "zip": "28277",
+                "coordinates": "35.040784,-80.812622",
+                "groups": [2],
+                "family":{},
+                "gender": "m",
+                "phone": "7045551234",
+                "member": 1
+            }],
+            "total": 2
+        }
